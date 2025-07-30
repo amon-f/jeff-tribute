@@ -1,5 +1,4 @@
-
-    // 🛠️ Replace this with your actual Firebase config
+// 🛠️ Replace this with your actual Firebase config
     const firebaseConfig = {
         apiKey: "AIzaSyCOiSviIOwZ3KJohirUtWM_QSdTh_-gKAc",
         authDomain: "jefftributes.firebaseapp.com",
@@ -11,10 +10,28 @@
 
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
+
+    // Reference to tributes in Firebase
     const db = firebase.database();
+    const tributesRef = db.ref('tributes');
 
     const form = document.getElementById('tributeForm');
     const tributeList = document.getElementById('tributeList');
+
+    // Listen for new tributes and update the list
+    tributesRef.on('value', (snapshot) => {
+      const tributes = snapshot.val();
+      tributeList.innerHTML = '';
+      if (tributes) {
+        Object.values(tributes).forEach(t => {
+          const div = document.createElement('div');
+          div.innerHTML = `<strong>${t.name}</strong>: ${t.message}`;
+          tributeList.appendChild(div);
+        });
+      } else {
+        tributeList.innerHTML = 'No tributes yet.';
+      }
+    });
 
     // Handle form submission
     form.addEventListener('submit', function (e) {
@@ -22,16 +39,7 @@
       const name = document.getElementById('name').value.trim();
       const message = document.getElementById('message').value.trim();
       if (name && message) {
-        db.ref('tributes').push({ name, message });
+        tributesRef.push({ name, message });
         form.reset();
       }
-    });
-
-    // Listen for new tributes
-    db.ref('tributes').on('child_added', function(snapshot) {
-      const tribute = snapshot.val();
-      const div = document.createElement('div');
-      div.className = 'tribute';
-      div.innerHTML = `<h4>${tribute.name}</h4><p>${tribute.message}</p>`;
-      tributeList.prepend(div);
     });
