@@ -3,7 +3,7 @@
         apiKey: "AIzaSyCOiSviIOwZ3KJohirUtWM_QSdTh_-gKAc",
         authDomain: "jefftributes.firebaseapp.com",
         projectId: "jefftributes",
-        storageBucket: "jefftributes.firebasestorage.app",
+        storageBucket: "jefftributes.appspot.com", // <-- fixed typo
         messagingSenderId: "312715553870",
         appId: "1:312715553870:web:322b5fe77dfbefdb28671f"
     };
