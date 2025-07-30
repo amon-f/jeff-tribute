@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tributes to Jeff</title>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h2>Write a Tribute to Jeff</h2>
+  <form id="tributeForm">
+    <input type="text" id="name" placeholder="Your Name" required />
+    <textarea id="message" placeholder="Your Tribute Message" required></textarea>
+    <button type="submit">Submit Tribute</button>
+  </form>
+
+  <h2>Tributes from Friends and Family</h2>
+  <div id="tributeList">Loading tributes...</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
